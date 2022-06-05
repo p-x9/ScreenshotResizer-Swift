@@ -16,6 +16,10 @@ class SSMainScreenSnapshotter_Hook: ClassHook<SSMainScreenSnapshotter> {
     func takeScreenshot() -> UIImage {
         let image = orig.takeScreenshot()
         
+        guard localSettings.isTweakEnabled else {
+            return image
+        }
+        
         let ioSurface = image.perform(Selector(("ioSurface"))).takeUnretainedValue() as! IOSurface
 
         let pixelBufferAttributes = [
@@ -41,7 +45,6 @@ class SSMainScreenSnapshotter_Hook: ClassHook<SSMainScreenSnapshotter> {
 }
 
 func readPrefs() {
-    
     let path = "/var/mobile/Library/Preferences/com.p-x9.screenshotresizer.pref.plist"
     
     if !FileManager().fileExists(atPath: path) {
@@ -57,11 +60,23 @@ func readPrefs() {
     localSettings.scale = dict.value(forKey: "scale") as? CGFloat ?? 0.5
 }
 
+func settingChanged() {
+    readPrefs()
+}
+
+func observePrefsChange() {
+    let NOTIFY = "com.p-x9.screenshotresizer.prefschanged" as CFString
+    
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(),
+                                    nil, { _, _, _, _, _ in
+        settingChanged()
+    }, NOTIFY, nil, CFNotificationSuspensionBehavior.deliverImmediately)
+}
+
 struct ScreenshotResizer: Tweak {
     init() {
         readPrefs()
-        if (localSettings.isTweakEnabled) {
-            tweak().activate()
-        }
+        observePrefsChange()
+        tweak().activate()
     }
 }

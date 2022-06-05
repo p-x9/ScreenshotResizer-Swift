@@ -17,3 +17,5 @@ $(TWEAK_NAME)_CFLAGS = -fobjc-arc -ISources/ScreenShotResizerC/include
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
+SUBPROJECTS += preferences
+include $(THEOS_MAKE_PATH)/aggregate.mk
