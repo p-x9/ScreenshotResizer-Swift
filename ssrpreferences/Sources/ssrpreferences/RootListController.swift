@@ -1,5 +1,5 @@
 import Preferences
-import preferencesC
+import ssrpreferencesC
 
 class RootListController: PSListController {
     

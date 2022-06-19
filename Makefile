@@ -3,7 +3,7 @@ GO_EASY_ON_ME := 1
 
 ARCHS = arm64 arm64e
 TARGET := iphone:clang:latest:15.0
-THEOS_DEVICE_IP = 127.0.0.1 -p 2222
+THEOS_DEVICE_IP = 192.168.0.15 -p 22
 
 INSTALL_TARGET_PROCESSES = SpringBoard
 
@@ -17,5 +17,5 @@ $(TWEAK_NAME)_CFLAGS = -fobjc-arc -ISources/ScreenShotResizerC/include
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
-SUBPROJECTS += preferences
+SUBPROJECTS += ssrpreferences
 include $(THEOS_MAKE_PATH)/aggregate.mk

@@ -1,4 +1,4 @@
-module preferencesC {
+module ssrpreferencesC {
     umbrella "."
     export *
 }
