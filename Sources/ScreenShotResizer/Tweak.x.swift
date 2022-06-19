@@ -47,10 +47,6 @@ class SSMainScreenSnapshotter_Hook: ClassHook<SSMainScreenSnapshotter> {
 func readPrefs() {
     let path = "/var/mobile/Library/Preferences/com.p-x9.screenshotresizer.pref.plist"
     
-    if !FileManager().fileExists(atPath: path) {
-        try? FileManager().copyItem(atPath: "Library/PreferenceBundles/notchbanners.bundle/defaults.plist", toPath: path)
-    }
-    
     guard let dict = NSDictionary(contentsOfFile: path) else {
         return
     }
