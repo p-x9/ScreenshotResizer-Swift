@@ -24,11 +24,6 @@ class RootListController: PSListController {
         }
     }
     
-    override func readPreferenceValue(_ specifier: PSSpecifier!) -> Any! {
-        let prefs = NSDictionary(contentsOfFile: Self.PREF_PATH)
-        return prefs?.object(forKey: specifier.properties.object(forKey: "key") as Any)
-    }
-    
     override func setPreferenceValue(_ value: Any!, specifier: PSSpecifier!) {
         let prefs = NSMutableDictionary(contentsOfFile: Self.PREF_PATH) ?? .init()
         prefs.setObject(value as Any, forKey: specifier.properties.object(forKey: "key") as! NSCopying)
