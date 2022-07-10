@@ -2,7 +2,7 @@ DEBUG = 0
 GO_EASY_ON_ME := 1
 
 ARCHS = arm64 arm64e
-TARGET := iphone:clang:latest:15.0
+TARGET = iphone:14.5:10.0
 THEOS_DEVICE_IP = 192.168.0.15 -p 22
 
 INSTALL_TARGET_PROCESSES = SpringBoard
