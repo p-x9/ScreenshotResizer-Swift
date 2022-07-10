@@ -1,8 +1,8 @@
 Package: com.p-x9.screenshotresizer
-Name: screenshotresizer
+Name: ScreenShotResizer
 Version: 0.0.1
 Architecture: iphoneos-arm
-Description: An awesome Orion tweak!
+Description: Tweak for customize quality of screenshot
 Maintainer: p-x9
 Author: p-x9
 Section: Tweaks
